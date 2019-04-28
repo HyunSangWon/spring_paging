@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+  <!--게시물 리스트 -->
+  <select id="boardList" parameterType="hashMap" resultType="hashMap">
+	<![CDATA[
+	 SELECT board_no,
+	 		board_title,
+	 		DATE_FORMAT(BOARD_DATE,'%Y-%m-%d') board_date
+	 FROM board
+	 ORDER BY board_no DESC 
+	 LIMIT #{LIMITCOUNT},#{CONTENTNUM};
+	]]>
+  </select>
+ 
+  <!--게시물 총 갯수 -->
+  <select id="totalCnt" parameterType="hashMap" resultType="Integer">
+	<![CDATA[
+	 SELECT count(board_no) TOTALCOUNT
+	 FROM board
+	]]>
+  </select>
+ 
+ 
+</mapper>
